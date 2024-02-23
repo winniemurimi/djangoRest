@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from channels.routing import ProtocolTypeRouter, URLRouter
-from endpoint.routing import websocket_urlpatterns
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -73,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-ASGI_APPLICATION = 'myproject.routing.application'
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -125,10 +124,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-def get_application():
-    return ProtocolTypeRouter({
-        'http': get_asgi_application(),
-        'websocket': URLRouter(websocket_urlpatterns),
-    })

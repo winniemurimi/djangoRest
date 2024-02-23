@@ -20,9 +20,3 @@ def addItem(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
-
-@api_view(['POST'])
-def send_message(request):
-    message = request.data.get('message')
-    #logic to send the message 
-    return Response({'status':'Message sent successfully'})
